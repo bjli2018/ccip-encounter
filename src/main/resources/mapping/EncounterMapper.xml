@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.varian.ccip.dao.EncounterMapper">
+  <resultMap id="BaseResultMap" type="com.varian.ccip.model.Encounter">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="urgent" jdbcType="VARCHAR" property="urgent" />
+    <result column="primary_physician_id" jdbcType="VARCHAR" property="primaryPhysicianId" />
+    <result column="primary_physician_group_id" jdbcType="VARCHAR" property="primaryPhysicianGroupId" />
+    <result column="primary_physician_group_name" jdbcType="VARCHAR" property="primaryPhysicianGroupName" />
+    <result column="physicianB_id" jdbcType="VARCHAR" property="physicianbId" />
+    <result column="physicianB_name" jdbcType="VARCHAR" property="physicianbName" />
+    <result column="physicianC_id" jdbcType="VARCHAR" property="physiciancId" />
+    <result column="physicianC_name" jdbcType="VARCHAR" property="physiciancName" />
+    <result column="created_user" jdbcType="VARCHAR" property="createdUser" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="last_updated_user" jdbcType="VARCHAR" property="lastUpdatedUser" />
+    <result column="physicist_id" jdbcType="VARCHAR" property="physicistId" />
+    <result column="physician_phone" jdbcType="VARCHAR" property="physicianPhone" />
+    <result column="patient_ser" jdbcType="BIGINT" property="patientSer" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.varian.ccip.model.Encounter">
+    <result column="encounter_info" jdbcType="LONGVARCHAR" property="encounterInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, age, urgent, primary_physician_id, primary_physician_group_id, primary_physician_group_name, 
+    physicianB_id, physicianB_name, physicianC_id, physicianC_name, created_user, created_date, 
+    last_updated_date, last_updated_user, physicist_id, physician_phone, patient_ser
+  </sql>
+  <sql id="Blob_Column_List">
+    encounter_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from encounter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from encounter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.varian.ccip.model.Encounter">
+    insert into encounter (id, age, urgent, 
+      primary_physician_id, primary_physician_group_id, 
+      primary_physician_group_name, physicianB_id, 
+      physicianB_name, physicianC_id, physicianC_name, 
+      created_user, created_date, last_updated_date, 
+      last_updated_user, physicist_id, physician_phone, 
+      patient_ser, encounter_info)
+    values (#{id,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{urgent,jdbcType=VARCHAR}, 
+      #{primaryPhysicianId,jdbcType=VARCHAR}, #{primaryPhysicianGroupId,jdbcType=VARCHAR}, 
+      #{primaryPhysicianGroupName,jdbcType=VARCHAR}, #{physicianbId,jdbcType=VARCHAR}, 
+      #{physicianbName,jdbcType=VARCHAR}, #{physiciancId,jdbcType=VARCHAR}, #{physiciancName,jdbcType=VARCHAR}, 
+      #{createdUser,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, #{lastUpdatedDate,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedUser,jdbcType=VARCHAR}, #{physicistId,jdbcType=VARCHAR}, #{physicianPhone,jdbcType=VARCHAR}, 
+      #{patientSer,jdbcType=BIGINT}, #{encounterInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.varian.ccip.model.Encounter">
+    insert into encounter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="urgent != null">
+        urgent,
+      </if>
+      <if test="primaryPhysicianId != null">
+        primary_physician_id,
+      </if>
+      <if test="primaryPhysicianGroupId != null">
+        primary_physician_group_id,
+      </if>
+      <if test="primaryPhysicianGroupName != null">
+        primary_physician_group_name,
+      </if>
+      <if test="physicianbId != null">
+        physicianB_id,
+      </if>
+      <if test="physicianbName != null">
+        physicianB_name,
+      </if>
+      <if test="physiciancId != null">
+        physicianC_id,
+      </if>
+      <if test="physiciancName != null">
+        physicianC_name,
+      </if>
+      <if test="createdUser != null">
+        created_user,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user,
+      </if>
+      <if test="physicistId != null">
+        physicist_id,
+      </if>
+      <if test="physicianPhone != null">
+        physician_phone,
+      </if>
+      <if test="patientSer != null">
+        patient_ser,
+      </if>
+      <if test="encounterInfo != null">
+        encounter_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="urgent != null">
+        #{urgent,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianId != null">
+        #{primaryPhysicianId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianGroupId != null">
+        #{primaryPhysicianGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianGroupName != null">
+        #{primaryPhysicianGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianbId != null">
+        #{physicianbId,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianbName != null">
+        #{physicianbName,jdbcType=VARCHAR},
+      </if>
+      <if test="physiciancId != null">
+        #{physiciancId,jdbcType=VARCHAR},
+      </if>
+      <if test="physiciancName != null">
+        #{physiciancName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="physicistId != null">
+        #{physicistId,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianPhone != null">
+        #{physicianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSer != null">
+        #{patientSer,jdbcType=BIGINT},
+      </if>
+      <if test="encounterInfo != null">
+        #{encounterInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.varian.ccip.model.Encounter">
+    update encounter
+    <set>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="urgent != null">
+        urgent = #{urgent,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianId != null">
+        primary_physician_id = #{primaryPhysicianId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianGroupId != null">
+        primary_physician_group_id = #{primaryPhysicianGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPhysicianGroupName != null">
+        primary_physician_group_name = #{primaryPhysicianGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianbId != null">
+        physicianB_id = #{physicianbId,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianbName != null">
+        physicianB_name = #{physicianbName,jdbcType=VARCHAR},
+      </if>
+      <if test="physiciancId != null">
+        physicianC_id = #{physiciancId,jdbcType=VARCHAR},
+      </if>
+      <if test="physiciancName != null">
+        physicianC_name = #{physiciancName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUser != null">
+        created_user = #{createdUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedUser != null">
+        last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="physicistId != null">
+        physicist_id = #{physicistId,jdbcType=VARCHAR},
+      </if>
+      <if test="physicianPhone != null">
+        physician_phone = #{physicianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSer != null">
+        patient_ser = #{patientSer,jdbcType=BIGINT},
+      </if>
+      <if test="encounterInfo != null">
+        encounter_info = #{encounterInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.varian.ccip.model.Encounter">
+    update encounter
+    set age = #{age,jdbcType=INTEGER},
+      urgent = #{urgent,jdbcType=VARCHAR},
+      primary_physician_id = #{primaryPhysicianId,jdbcType=VARCHAR},
+      primary_physician_group_id = #{primaryPhysicianGroupId,jdbcType=VARCHAR},
+      primary_physician_group_name = #{primaryPhysicianGroupName,jdbcType=VARCHAR},
+      physicianB_id = #{physicianbId,jdbcType=VARCHAR},
+      physicianB_name = #{physicianbName,jdbcType=VARCHAR},
+      physicianC_id = #{physiciancId,jdbcType=VARCHAR},
+      physicianC_name = #{physiciancName,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      last_updated_date = #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      physicist_id = #{physicistId,jdbcType=VARCHAR},
+      physician_phone = #{physicianPhone,jdbcType=VARCHAR},
+      patient_ser = #{patientSer,jdbcType=BIGINT},
+      encounter_info = #{encounterInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.varian.ccip.model.Encounter">
+    update encounter
+    set age = #{age,jdbcType=INTEGER},
+      urgent = #{urgent,jdbcType=VARCHAR},
+      primary_physician_id = #{primaryPhysicianId,jdbcType=VARCHAR},
+      primary_physician_group_id = #{primaryPhysicianGroupId,jdbcType=VARCHAR},
+      primary_physician_group_name = #{primaryPhysicianGroupName,jdbcType=VARCHAR},
+      physicianB_id = #{physicianbId,jdbcType=VARCHAR},
+      physicianB_name = #{physicianbName,jdbcType=VARCHAR},
+      physicianC_id = #{physiciancId,jdbcType=VARCHAR},
+      physicianC_name = #{physiciancName,jdbcType=VARCHAR},
+      created_user = #{createdUser,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      last_updated_date = #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      last_updated_user = #{lastUpdatedUser,jdbcType=VARCHAR},
+      physicist_id = #{physicistId,jdbcType=VARCHAR},
+      physician_phone = #{physicianPhone,jdbcType=VARCHAR},
+      patient_ser = #{patientSer,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

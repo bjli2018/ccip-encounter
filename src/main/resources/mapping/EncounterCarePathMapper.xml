@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.varian.ccip.dao.EncounterCarePathMapper">
+  <resultMap id="BaseResultMap" type="com.varian.ccip.model.EncounterCarePath">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="encounter_id" jdbcType="INTEGER" property="encounterId" />
+    <result column="cp_instance_id" jdbcType="INTEGER" property="cpInstanceId" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="physicist_id" jdbcType="VARCHAR" property="physicistId" />
+    <result column="crt_user" jdbcType="VARCHAR" property="crtUser" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, encounter_id, cp_instance_id, category, physicist_id, crt_user, crt_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from encounter_care_path
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from encounter_care_path
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.varian.ccip.model.EncounterCarePath">
+    insert into encounter_care_path (id, encounter_id, cp_instance_id, 
+      category, physicist_id, crt_user, 
+      crt_time)
+    values (#{id,jdbcType=INTEGER}, #{encounterId,jdbcType=INTEGER}, #{cpInstanceId,jdbcType=INTEGER}, 
+      #{category,jdbcType=VARCHAR}, #{physicistId,jdbcType=VARCHAR}, #{crtUser,jdbcType=VARCHAR}, 
+      #{crtTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.varian.ccip.model.EncounterCarePath">
+    insert into encounter_care_path
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="encounterId != null">
+        encounter_id,
+      </if>
+      <if test="cpInstanceId != null">
+        cp_instance_id,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="physicistId != null">
+        physicist_id,
+      </if>
+      <if test="crtUser != null">
+        crt_user,
+      </if>
+      <if test="crtTime != null">
+        crt_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="encounterId != null">
+        #{encounterId,jdbcType=INTEGER},
+      </if>
+      <if test="cpInstanceId != null">
+        #{cpInstanceId,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="physicistId != null">
+        #{physicistId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.varian.ccip.model.EncounterCarePath">
+    update encounter_care_path
+    <set>
+      <if test="encounterId != null">
+        encounter_id = #{encounterId,jdbcType=INTEGER},
+      </if>
+      <if test="cpInstanceId != null">
+        cp_instance_id = #{cpInstanceId,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="physicistId != null">
+        physicist_id = #{physicistId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        crt_user = #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.varian.ccip.model.EncounterCarePath">
+    update encounter_care_path
+    set encounter_id = #{encounterId,jdbcType=INTEGER},
+      cp_instance_id = #{cpInstanceId,jdbcType=INTEGER},
+      category = #{category,jdbcType=VARCHAR},
+      physicist_id = #{physicistId,jdbcType=VARCHAR},
+      crt_user = #{crtUser,jdbcType=VARCHAR},
+      crt_time = #{crtTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

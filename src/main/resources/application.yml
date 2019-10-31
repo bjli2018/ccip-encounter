@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 spring:
   application:
     name: ccip-encounter
@@ -19,7 +18,3 @@ mybatis:
   mapperLocations: classpath:mapping/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
-=======
-server:
-  port: 8091
->>>>>>> branch 'master' of https://github.com/bjli2018/ccip-encounter.git

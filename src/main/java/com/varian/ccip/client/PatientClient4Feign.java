@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "CCIP-PATIENT")
+@FeignClient("${eurika-name.ccip.patient}")
 public interface PatientClient4Feign {
 	@RequestMapping(method = RequestMethod.GET,
             value = "/patient/search",

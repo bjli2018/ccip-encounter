@@ -23,6 +23,11 @@ public class EncounterController {
     @GetMapping("search")
 	@ResponseBody
 	public EncounterVO getEncounterById(@RequestParam("id")Integer id) {
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return this.encounterService.getEncounterById(id);
 	}
     

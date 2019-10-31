@@ -59,7 +59,7 @@
       #{lastUpdatedUser,jdbcType=VARCHAR}, #{physicistId,jdbcType=VARCHAR}, #{physicianPhone,jdbcType=VARCHAR}, 
       #{patientSer,jdbcType=BIGINT}, #{encounterInfo,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.varian.ccip.model.Encounter">
+  <insert id="insertSelective" parameterType="com.varian.ccip.model.Encounter" keyProperty="id" useGeneratedKeys="true">
     insert into encounter
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

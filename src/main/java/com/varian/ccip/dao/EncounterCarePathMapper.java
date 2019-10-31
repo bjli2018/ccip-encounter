@@ -1,5 +1,7 @@
 package com.varian.ccip.dao;
 
+import java.util.List;
+
 import com.varian.ccip.model.EncounterCarePath;
 
 public interface EncounterCarePathMapper {
@@ -14,4 +16,6 @@ public interface EncounterCarePathMapper {
     int updateByPrimaryKeySelective(EncounterCarePath record);
 
     int updateByPrimaryKey(EncounterCarePath record);
+    
+    void insertBatch(List<EncounterCarePath> list);
 }

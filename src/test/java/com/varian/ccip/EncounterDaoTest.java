@@ -21,5 +21,14 @@ public class EncounterDaoTest {
 		Encounter encounter = this.encounterMapper.selectByPrimaryKey(1);
 		System.out.println(encounter);
 	}
-
+	
+	@Test
+	public void testInsertSelective() {
+		Encounter record = new Encounter(){{
+			setAge(22);
+		}};
+		int result = this.encounterMapper.insertSelective(record);
+		System.out.println(record);
+		System.out.println("新增"+result+"条Encounter");
+	}
 }

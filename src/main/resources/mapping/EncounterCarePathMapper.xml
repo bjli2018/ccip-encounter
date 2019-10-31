@@ -80,6 +80,19 @@
       </if>
     </trim>
   </insert>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into encounter_care_path (encounter_id, cp_instance_id, 
+      category, physicist_id, crt_user)
+    values <foreach collection="list" item="item" index="index" separator=",">
+    (
+    	#{item.encounterId,jdbcType=INTEGER}, 
+    	#{item.cpInstanceId,jdbcType=INTEGER}, 
+      	#{item.category,jdbcType=VARCHAR}, 
+      	#{item.physicistId,jdbcType=VARCHAR}, 
+      	#{item.crtUser,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.varian.ccip.model.EncounterCarePath">
     update encounter_care_path
     <set>

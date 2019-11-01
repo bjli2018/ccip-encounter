@@ -62,6 +62,11 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.10</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -102,6 +107,8 @@
 				<datasource.url>jdbc:mysql://localhost:3306/ccip_encounter?serverTimezone=GMT%2B8</datasource.url>
 				<datasource.username>root</datasource.username>
 				<datasource.password>admin</datasource.password>
+				<druid.username>admin</druid.username>
+				<druid.password>admin</druid.password>
 				<eureka.client.serviceUrl.defaultZone>http://localhost:8761/eureka</eureka.client.serviceUrl.defaultZone>
 				<encounter.server.port>8091</encounter.server.port>
 				<encounter.server.name>ccip-encounter</encounter.server.name>
